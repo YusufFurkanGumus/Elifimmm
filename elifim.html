@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yusuf F ❤️ Elifnaz - Aşkımızın Günleri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom right, #ffe6f0, #ffe6fa);
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            color: #ff1493;
+        }
+
+        h1 {
+            margin-top: 100px;
+            font-size: 3.5em;
+            z-index: 1;
+            position: relative;
+            text-shadow: 2px 2px #ffc0cb;
+        }
+
+        p {
+            font-size: 2em;
+            z-index: 1;
+            position: relative;
+            margin-bottom: 50px;
+            text-shadow: 1px 1px #ffc0cb;
+        }
+
+        /* Gerçek kalp (SVG kullanıyoruz) */
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path fill="%23ff0000" d="M471.7 73.9c-54.5-46.4-136-38.3-186.4 13.7L256 116.1l-29.3-28.5C176.3 35.6 94.8 27.5 40.3 73.9-18.4 124.7-13.3 214 43 264.5l193 193.5c12.5 12.5 32.8 12.5 45.3 0l193-193.5c56.3-50.5 61.4-139.8 3.7-190.6z"/></svg>');
+            background-size: cover;
+            animation: float 8s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(50px) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Yusuf F ❤️ Elifnaz</h1>
+    <p id="gunSayisi"></p>
+
+    <script>
+        // Başlangıç tarihi (YIL, AY-1, GÜN)
+        const startDate = new Date(2024, 11, 8); // 8 kasım 2024
+
+        function daysTogether() {
+            const today = new Date();
+            const timeDiff = today - startDate;
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 1;
+            return days;
+        }
+
+        document.getElementById('gunSayisi').innerText = 
+            `Birlikte ${daysTogether()} gündür sevgiliyiz ❤️ İyi ki varsın Biricik Aşkım`;
+
+        // Kalp oluşturma
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+
+            const size = Math.random() * 30 + 20; // 20px - 50px
+            heart.style.width = size + 'px';
+            heart.style.height = size + 'px';
+
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = 4 + Math.random() * 6 + 's';
+            heart.style.opacity = Math.random() * 0.5 + 0.5;
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+
+        // Sık sık kalp oluştur
+        setInterval(createHeart, 100);
+    </script>
+
+</body>
+</html>
