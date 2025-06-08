@@ -61,18 +61,32 @@
     <p id="gunSayisi"></p>
 
     <script>
-        // Başlangıç tarihi (YIL, AY-1, GÜN)
-        const startDate = new Date(2024, 11, 8); // 8 kasım 2024
+        // Başlangıç tarihi (YIL, AY-1, GÜN, SAAT, DK, SN)
+        const startDate = new Date(2024, 10, 8, 0, 0, 0); // 8 Kasım 2024, saat 00:00:00
 
-        function daysTogether() {
-            const today = new Date();
-            const timeDiff = today - startDate;
-            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 1;
-            return days;
+        function updateTimeTogether() {
+            const now = new Date();
+            let diff = now - startDate;
+
+            if (diff < 0) diff = 0; // henüz başlamadıysa
+
+            const totalSeconds = Math.floor(diff / 1000);
+            const days = Math.floor(totalSeconds / (24 * 3600));
+            const hours = Math.floor((totalSeconds % (24 * 3600)) / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            return {days, hours, minutes, seconds};
         }
 
-        document.getElementById('gunSayisi').innerText = 
-            `Birlikte ${daysTogether()} gündür sevgiliyiz ❤️ İyi ki varsın Biricik Aşkım`;
+        function updateDisplay() {
+            const t = updateTimeTogether();
+            document.getElementById('gunSayisi').innerText = 
+                `Birlikte ${t.days} gün ${t.hours} saat ${t.minutes} dakika ${t.seconds} saniyedir sevgiliyiz ❤️ İyi ki varsın Biricik Aşkım`;
+        }
+
+        updateDisplay();
+        setInterval(updateDisplay, 1000);
 
         // Kalp oluşturma
         function createHeart() {
