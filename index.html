@@ -28,6 +28,12 @@
             font-size: 2em;
             z-index: 1;
             position: relative;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px #ffc0cb;
+        }
+
+        #askMesaji {
+            font-size: 1.8em;
             margin-bottom: 50px;
             text-shadow: 1px 1px #ffc0cb;
         }
@@ -53,7 +59,6 @@
             }
         }
 
-        /* Müzik butonu */
         #musicButton {
             position: fixed;
             top: 15px;
@@ -77,8 +82,8 @@
 
     <h1>Yusuf❤️Elifnaz</h1>
     <p id="gunSayisi"></p>
+    <p id="askMesaji"></p> <!-- Rastgele aşk mesajı için eklendi -->
 
-    <!-- Müzik çalar -->
     <audio id="romanticMusic" loop>
         <source src="romantik.mp3" type="audio/mpeg">
         Tarayıcınız ses dosyasını desteklemiyor.
@@ -160,6 +165,46 @@
             }
             isPlaying = !isPlaying;
         }
+
+        // 💌 Rastgele aşk mesajları
+        const mesajlar = [
+    "Sana her baktığımda kalbim yeniden çarpıyor ❤️",
+    "Seninle her an bir ömre bedel 🌹",
+    "Aşkın en güzel tanımı: Sen",
+    "Sonsuza dek seninle... 💍",
+    "Birlikte geçen her saniye cennetten bir parça 💫",
+    "Bir tebessümün bile tüm günümü güzelleştiriyor 😍",
+    "Kalbim sadece senin için atıyor 💓",
+    "Gözlerine her baktığımda kayboluyorum ✨",
+    "Seninle olmak, hayalini kurduğum hayatın ta kendisi 💖",
+    "Ne zaman gülümsesen, dünyam aydınlanıyor 🌞",
+    "Sensiz bir günüm bile eksik, yarım ve anlamsız 🕊️",
+    "Seninle geçirdiğim her dakika, hayatımın en kıymetli anı oluyor ⏳",
+    "İyi ki kalbim seni seçmiş, iyi ki seninim 💑",
+    "Sen benim tesadüfüm değil, kaderimsin 🧿",
+    "Kalbim senin adını fısıldıyor her saniye 🫀",
+    "Her şey geçer ama seninle olan sevgim asla geçmez 🌙",
+    "Bir ömre bin mutluluk sığdırdın sevgilim 💌",
+    "Ellerin ellerimdeyken dünya bile durabilir 🌍",
+    "Aşka inanmazdım, ta ki seni tanıyana kadar 🥰",
+    "En güzel hikaye, seninle yazılan hikayedir 📖",
+    "Varlığın huzur, sesin müzik, gülüşün ömür 💕",
+    "Sensiz geçen saniyeler bile zaman kaybı ⏱️",
+    "Aşk, sadece bir kelimeydi… ta ki seninle anlam bulana kadar 💞",
+    "Gözlerinle göz göze geldiğim an dünya sessizleşiyor 🔇",
+    "Yanımda olduğun sürece, hiçbir şeyden korkmam ⚓",
+    "Sevgin içimi ısıtan tek kış güneşi 🌤️",
+    "Birlikte yaşlanmak, kurduğum en tatlı hayal 👵👴",
+    "Her sabah seninle uyanmak en güzel mucize 🌅"
+        ];
+
+        function rastgeleMesajGoster() {
+            const mesaj = mesajlar[Math.floor(Math.random() * mesajlar.length)];
+            document.getElementById("askMesaji").innerText = mesaj;
+        }
+
+        rastgeleMesajGoster();
+        setInterval(rastgeleMesajGoster, 10000); // 10 saniyede bir mesaj değişsin
     </script>
 
 </body>
