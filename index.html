@@ -32,12 +32,6 @@
             text-shadow: 1px 1px #ffc0cb;
         }
 
-        #askMesaji {
-            font-size: 1.8em;
-            margin-bottom: 50px;
-            text-shadow: 1px 1px #ffc0cb;
-        }
-
         .heart {
             position: absolute;
             width: 30px;
@@ -76,13 +70,20 @@
         #musicButton:hover {
             background: #ff1493;
         }
+
+        #askMesaji {
+            font-size: 1.5em;
+            color: #ff69b4;
+            margin-top: 20px;
+            padding: 0 20px;
+        }
     </style>
 </head>
 <body>
 
     <h1>Yusuf❤️Elifnaz</h1>
     <p id="gunSayisi"></p>
-    <p id="askMesaji"></p> <!-- Rastgele aşk mesajı için eklendi -->
+    <p id="askMesaji"></p> <!-- Aşk mesajı buraya gelecek -->
 
     <audio id="romanticMusic" loop>
         <source src="romantik.mp3" type="audio/mpeg">
@@ -91,7 +92,6 @@
     <button id="musicButton" onclick="toggleMusic()">🎵 Müzik Başlat</button>
 
     <script>
-        // Süre hesaplama
         const startDate = new Date(2024, 11, 8, 0, 0, 0); // 8 Kasım 2024
 
         function updateTimeTogether() {
@@ -117,7 +117,6 @@
         updateDisplay();
         setInterval(updateDisplay, 1000);
 
-        // Kalp oluştur
         function createHeart() {
             const heart = document.createElement('div');
             heart.className = 'heart';
@@ -135,7 +134,6 @@
 
         setInterval(createHeart, 100);
 
-        // Arka plan gün – gece efekti
         function updateBackground() {
             const hour = new Date().getHours();
 
@@ -151,7 +149,6 @@
         updateBackground();
         setInterval(updateBackground, 60000);
 
-        // Müzik kontrol
         const music = document.getElementById("romanticMusic");
         let isPlaying = false;
 
@@ -166,45 +163,33 @@
             isPlaying = !isPlaying;
         }
 
-        // 💌 Rastgele aşk mesajları
+        // Rastgele aşk mesajları
         const mesajlar = [
-    "Sana her baktığımda kalbim yeniden çarpıyor ❤️",
-    "Seninle her an bir ömre bedel 🌹",
-    "Aşkın en güzel tanımı: Sen",
-    "Sonsuza dek seninle... 💍",
-    "Birlikte geçen her saniye cennetten bir parça 💫",
-    "Bir tebessümün bile tüm günümü güzelleştiriyor 😍",
-    "Kalbim sadece senin için atıyor 💓",
-    "Gözlerine her baktığımda kayboluyorum ✨",
-    "Seninle olmak, hayalini kurduğum hayatın ta kendisi 💖",
-    "Ne zaman gülümsesen, dünyam aydınlanıyor 🌞",
-    "Sensiz bir günüm bile eksik, yarım ve anlamsız 🕊️",
-    "Seninle geçirdiğim her dakika, hayatımın en kıymetli anı oluyor ⏳",
-    "İyi ki kalbim seni seçmiş, iyi ki seninim 💑",
-    "Sen benim tesadüfüm değil, kaderimsin 🧿",
-    "Kalbim senin adını fısıldıyor her saniye 🫀",
-    "Her şey geçer ama seninle olan sevgim asla geçmez 🌙",
-    "Bir ömre bin mutluluk sığdırdın sevgilim 💌",
-    "Ellerin ellerimdeyken dünya bile durabilir 🌍",
-    "Aşka inanmazdım, ta ki seni tanıyana kadar 🥰",
-    "En güzel hikaye, seninle yazılan hikayedir 📖",
-    "Varlığın huzur, sesin müzik, gülüşün ömür 💕",
-    "Sensiz geçen saniyeler bile zaman kaybı ⏱️",
-    "Aşk, sadece bir kelimeydi… ta ki seninle anlam bulana kadar 💞",
-    "Gözlerinle göz göze geldiğim an dünya sessizleşiyor 🔇",
-    "Yanımda olduğun sürece, hiçbir şeyden korkmam ⚓",
-    "Sevgin içimi ısıtan tek kış güneşi 🌤️",
-    "Birlikte yaşlanmak, kurduğum en tatlı hayal 👵👴",
-    "Her sabah seninle uyanmak en güzel mucize 🌅"
+            "Sana her baktığımda kalbim yeniden çarpıyor ❤️",
+            "Seninle her an bir ömre bedel 🌹",
+            "Aşkın en güzel tanımı: Sen",
+            "Sonsuza dek seninle... 💍",
+            "Birlikte geçen her saniye cennetten bir parça 💫",
+            "Bir tebessümün bile tüm günümü güzelleştiriyor 😍",
+            "Kalbim sadece senin için atıyor 💓",
+            "Gözlerine her baktığımda kayboluyorum ✨",
+            "Seninle olmak, hayalini kurduğum hayatın ta kendisi 💖",
+            "Ne zaman gülümsesen, dünyam aydınlanıyor 🌞",
+            "Sensiz bir günüm bile eksik, yarım ve anlamsız 🕊️",
+            "Sen benim tesadüfüm değil, kaderimsin 🧿",
+            "Kalbim senin adını fısıldıyor her saniye 🫀",
+            "Her şey geçer ama seninle olan sevgim asla geçmez 🌙",
+            "Varlığın huzur, sesin müzik, gülüşün ömür 💕",
+            "Birlikte yaşlanmak, kurduğum en tatlı hayal 👵👴"
         ];
 
-        function rastgeleMesajGoster() {
-            const mesaj = mesajlar[Math.floor(Math.random() * mesajlar.length)];
-            document.getElementById("askMesaji").innerText = mesaj;
+        function rastgeleMesaj() {
+            const rasgele = mesajlar[Math.floor(Math.random() * mesajlar.length)];
+            document.getElementById("askMesaji").innerText = rasgele;
         }
 
-        rastgeleMesajGoster();
-        setInterval(rastgeleMesajGoster, 10000); // 10 saniyede bir mesaj değişsin
+        rastgeleMesaj();
+        setInterval(rastgeleMesaj, 10000);
     </script>
 
 </body>
