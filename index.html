@@ -10,10 +10,10 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background: linear-gradient(to bottom right, #ffe6f0, #ffe6fa);
             font-family: 'Dancing Script', cursive;
             text-align: center;
             color: #ff1493;
+            transition: background 2s ease;
         }
 
         h1 {
@@ -32,7 +32,6 @@
             text-shadow: 1px 1px #ffc0cb;
         }
 
-        /* Gerçek kalp (SVG kullanıyoruz) */
         .heart {
             position: absolute;
             width: 30px;
@@ -53,6 +52,25 @@
                 opacity: 0;
             }
         }
+
+        /* Müzik butonu */
+        #musicButton {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: #ff69b4;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #ff1493;
+        }
+
+        #musicButton:hover {
+            background: #ff1493;
+        }
     </style>
 </head>
 <body>
@@ -60,15 +78,21 @@
     <h1>Yusuf❤️Elifnaz</h1>
     <p id="gunSayisi"></p>
 
+    <!-- Müzik çalar -->
+    <audio id="romanticMusic" loop>
+        <source src="romantik.mp3" type="audio/mpeg">
+        Tarayıcınız ses dosyasını desteklemiyor.
+    </audio>
+    <button id="musicButton" onclick="toggleMusic()">🎵 Müzik Başlat</button>
+
     <script>
-        // Başlangıç tarihi (YIL, AY-1, GÜN, SAAT, DK, SN)
-        const startDate = new Date(2024, 11, 8, 0, 0, 0); // 8 Kasım 2024, saat 00:00:00
+        // Süre hesaplama
+        const startDate = new Date(2024, 11, 8, 0, 0, 0); // 8 Kasım 2024
 
         function updateTimeTogether() {
             const now = new Date();
             let diff = now - startDate;
-
-            if (diff < 0) diff = 0; // henüz başlamadıysa
+            if (diff < 0) diff = 0;
 
             const totalSeconds = Math.floor(diff / 1000);
             const days = Math.floor(totalSeconds / (24 * 3600));
@@ -76,40 +100,66 @@
             const minutes = Math.floor((totalSeconds % 3600) / 60);
             const seconds = totalSeconds % 60;
 
-            return {days, hours, minutes, seconds};
+            return { days, hours, minutes, seconds };
         }
 
         function updateDisplay() {
             const t = updateTimeTogether();
-            document.getElementById('gunSayisi').innerText = 
+            document.getElementById('gunSayisi').innerText =
                 `Birlikte ${t.days} gün ${t.hours} saat ${t.minutes} dakika ${t.seconds} saniyedir sevgiliyiz ❤️ İyi ki varsın Biricik Aşkım`;
         }
 
         updateDisplay();
         setInterval(updateDisplay, 1000);
 
-        // Kalp oluşturma
+        // Kalp oluştur
         function createHeart() {
             const heart = document.createElement('div');
             heart.className = 'heart';
 
-            const size = Math.random() * 30 + 20; // 20px - 50px
+            const size = Math.random() * 30 + 20;
             heart.style.width = size + 'px';
             heart.style.height = size + 'px';
-
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = 4 + Math.random() * 6 + 's';
             heart.style.opacity = Math.random() * 0.5 + 0.5;
 
             document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 10000);
+            setTimeout(() => heart.remove(), 10000);
         }
 
-        // Sık sık kalp oluştur
         setInterval(createHeart, 100);
+
+        // Arka plan gün – gece efekti
+        function updateBackground() {
+            const hour = new Date().getHours();
+
+            if (hour >= 6 && hour < 12) {
+                document.body.style.background = 'linear-gradient(to bottom right, #fff1e6, #ffe6cc)';
+            } else if (hour >= 12 && hour < 18) {
+                document.body.style.background = 'linear-gradient(to bottom right, #ffdde1, #ee9ca7)';
+            } else {
+                document.body.style.background = 'linear-gradient(to bottom right, #2c3e50, #4ca1af)';
+            }
+        }
+
+        updateBackground();
+        setInterval(updateBackground, 60000);
+
+        // Müzik kontrol
+        const music = document.getElementById("romanticMusic");
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                document.getElementById("musicButton").innerText = "🎵 Müzik Başlat";
+            } else {
+                music.play();
+                document.getElementById("musicButton").innerText = "⏸️ Müzik Durdur";
+            }
+            isPlaying = !isPlaying;
+        }
     </script>
 
 </body>
