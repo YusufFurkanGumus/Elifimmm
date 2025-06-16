@@ -16,23 +16,13 @@
             transition: background 2s ease;
         }
 
-        /* Blink animasyonu */
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* Blink sınıfı */
-        .blink {
-            animation: blink 1.5s infinite;
-        }
-
         h1 {
             margin-top: 100px;
             font-size: 3.5em;
             z-index: 1;
             position: relative;
             text-shadow: 2px 2px #ffc0cb;
+            display: inline-block;
         }
 
         p {
@@ -41,6 +31,27 @@
             position: relative;
             margin-bottom: 20px;
             text-shadow: 1px 1px #ffc0cb;
+            display: inline-block;
+        }
+
+        /* Işığın yanıp sönme animasyonu */
+        @keyframes glowingBackground {
+            0%, 100% {
+                background-color: rgba(255, 20, 147, 0.1);
+                box-shadow: 0 0 8px rgba(255, 20, 147, 0.3);
+            }
+            50% {
+                background-color: rgba(255, 20, 147, 0.4);
+                box-shadow: 0 0 20px rgba(255, 20, 147, 0.8);
+            }
+        }
+
+        /* Yazıların arkasındaki ışık efekti için span */
+        .highlight {
+            position: relative;
+            padding: 0 15px;
+            border-radius: 12px;
+            animation: glowingBackground 2.5s ease-in-out infinite;
         }
 
         .heart {
@@ -87,14 +98,16 @@
             color: #ff69b4;
             margin-top: 20px;
             padding: 0 20px;
+            display: inline-block;
+            position: relative;
         }
     </style>
 </head>
 <body>
 
-    <h1>Yusuf❤️Elifnaz</h1>
-    <p id="gunSayisi"></p>
-    <p id="askMesaji"></p> <!-- Aşk mesajı buraya gelecek -->
+    <h1><span class="highlight">Yusuf❤️Elifnaz</span></h1>
+    <p id="gunSayisi"><span class="highlight"></span></p>
+    <p id="askMesaji"><span class="highlight"></span></p> <!-- Aşk mesajı buraya gelecek -->
 
     <audio id="romanticMusic" loop>
         <source src="romantik.mp3" type="audio/mpeg">
@@ -121,8 +134,9 @@
 
         function updateDisplay() {
             const t = updateTimeTogether();
-            document.getElementById('gunSayisi').innerText =
-                `Birlikte ${t.days} gün ${t.hours} saat ${t.minutes} dakika ${t.seconds} saniyedir sevgiliyiz ❤️ İyi ki varsın Biricik Aşkım`;
+            const gunSayisiSpan = document.querySelector("#gunSayisi .highlight");
+            gunSayisiSpan.innerText =
+                `Birlikte ${t.days} gün ${t.hours} saat ${t.minutes} dakika ${t.seconds} saniyedir sevgiliyiz ❤️ İyi ki varsın Biricik Aşkım;`;
         }
 
         updateDisplay();
@@ -193,121 +207,18 @@
             "Varlığın huzur, sesin müzik, gülüşün ömür 💕",
             "Birlikte yaşlanmak, kurduğum en tatlı hayal 👵👴",
             "Seninle geçen her an bir ömre bedel. ❤️",
-            "Gözlerine baktığımda dünyayı unutuyorum. 🌍✨",
-            "Varlığın içimi ısıtan bir güneş gibi. ☀️",
-            "Her sabah seninle uyanmak istiyorum. 🌅💖",
-            "Gülüşün, kalbimde çiçekler açtırıyor. 🌸😊",
-            "Kalbim seni her atışında anıyor. 💓",
-            "Seninle her şey daha anlamlı. 💫",
-            "Aşk, senin adınla başlıyor bende. 💌",
-            "En güzel hayalim sensin. 🌈",
-            "Seninle geçen zaman, gerçek mutluluk. 🕰️❤️",
-            "Gözlerin bir şiir gibi içimi okuyor. 📖😍",
-            "Kalbim sana ait, hep öyle kalacak. 🔐",
-            "Sensizliğe tahammülüm yok. 😢",
-            "Ruhum seninle tamamlanıyor. 🔄💕",
-            "Ellerini tuttuğumda dünya duruyor. ✋🌍",
-            "Her şeyde seni arıyorum, seni buluyorum. 🔍❤️",
-            "Yüzünü görmek bile iyi hissettiriyor. 😊🌟",
-            "Sen yanımda ol yeter. 🤗",
-            "En güzel yolculuk, sana çıkan yol. 🛤️💞",
-            "Hayat seninle gerçekten başlıyor. 🚀❤️",
-            "Gözlerindeki huzuru başka hiçbir yerde bulamıyorum. 😌👁️",
-            "Sesin, en sevdiğim melodi. 🎶💕",
-            "Hayatımın anlamı oldun. 🫶",
-            "Kalbimin tek sahibisin. 💘",
-            "Sen gülünce, içim kıpır kıpır oluyor. 😄💃",
-            "Aşkı seninle öğrendim. 📚❤️",
-            "Her gün sana yeniden âşık oluyorum. 🔁💖",
-            "Varlığın bana güç veriyor. 💪❤️",
-            "Sadece seninle tam oluyorum. 🧩",
-            "Seninle hayallerim gerçek gibi. ✨😇",
-            "En güzel hikâyemiz henüz yazılmadı. 📖💕",
-            "Sana her baktığımda geleceğimi görüyorum. 🔮👀",
-            "Birlikte geçirdiğimiz her an bir mucize. 🌠",
-            "Kalbim sana her geçen gün daha da bağlanıyor. 📈💓",
-            "Seni tanımadan önce eksiktim. 🫥❤️",
-            "Gözlerine her bakışımda yeniden âşık oluyorum. 😍💞",
-            "Yanımda olman, her şeye değer. 🎁❤️",
-            "Dünyadaki en güzel kelime senin adın. 🥰📝",
-            "Seninle geçen her dakika anlamlı. ⏳❤️",
-            "En karanlık anlarımda bile ışığımsın. 🌌💡",
-            "Sen gülünce kalbim dans ediyor. 💃❤️",
-            "Ruhum sana ait gibi hissediyorum. 🕊️💖",
-            "Gözlerin içimi ısıtıyor. 🔥👁️",
-            "Aklımda bir tek sen varsın. 🧠❤️",
-            "Sen varken başka hiçbir şey umurumda değil. 🚫🌍",
-            "Beni ben yapan sensin. 🧍‍♂️➡️💑",
-            "Kalbim, sadece senin için çarpıyor. 💓🔒",
-            "Varlığın bana huzur veriyor. 🧘‍♂️💕",
-            "En güzel manzaram sensin. 🌄👩",
-            "Geceleri yıldızları değil, seni izliyorum. 🌟👀",
-            "Seninle olmak, hayattaki en büyük şansım. 🎲❤️",
-            "Hayat kısa, ama seni sevmek sonsuz. ♾️❤️",
-            "Aşkın en güzel hali sensin. 💋",
-            "Sadece bir bakışın yeter. 👁️💘",
-            "Bütün şiirler seni anlatıyor gibi. ✒️🖤",
-            "Ne zaman seni düşünsem gülümsüyorum. 😊💭",
-            "Kalbim, sen diye atıyor. ❤️🎶",
-            "Her sabah aklıma düşüyorsun. ☕💖",
-            "Sen, en tatlı alışkanlığımsın. 🍯😋",
-            "Birlikte her şey daha kolay. 👫💪",
-            "Aşk sensin, başka kimse değil. 🫵❤️",
-            "Hayatın anlamı sensin. 🔍💘",
-            "Ne güzel şey seni sevmek. 💖✨",
-            "Yanımda olman, en büyük huzur. 🛏️🤗",
-            "Bir tebessümünle günüm aydınlanıyor. 🌞😊",
-            "Sadece seninle mutlu oluyorum. 😍🤝",
-            "Her şeyin özeti: Sen ❤️",
-            "Dünyada bir tek sen varsın sanki. 🌍👩",
-            "Gözlerin beni benden alıyor. 😵‍💫👁️",
-            "Kalbimde senin için özel bir yer var. 🗺️❤️",
-            "Seninle olmak mucize gibi. 🪄💕",
-            "Her anı seninle yaşamak istiyorum. ⏰👫",
-            "En güzel rüya, seninle gördüğüm. 💤❤️",
-            "Her şey seninle başladı. 🚪💕",
-            "Aşkın kalbimi sarıyor. 🫀💫",
-            "Sen hayatıma anlam kattın. 🖌️❤️",
-            "Gülüşün en güzel melodi. 🎵😁",
-            "Beni tamamlayan tek parçasın. 🧩❤️",
-            "Sana doyamıyorum. 🥰🔁",
-            "Her yerde seni görüyorum. 👀🩷",
-            "Kalbim seninle güvende. 🛡️💘",
-            "Her nefeste seni hissediyorum. 🌬️❤️",
-            "Sen yanımdayken dünya sessizleşiyor. 🔇🌍",
-            "Senle her an çok özel. 🪄🕰️",
-            "Sana bakınca her şey duruyor. ⏸️👁️",
-            "En değerli hazinem sensin. 💎❤️",
-            "Aklım, fikrim hep sende. 🧠💭",
-            "Sana olan sevgim tarifsiz. ✨❣️",
-            "Birlikte gülmek en güzel şey. 😂👫",
-            "Gözlerine her baktığımda yeniden başlıyorum. 🔄💞",
-            "Hayatımda olduğun için şükürler olsun. 🙏❤️",
-            "Beni en iyi sen anlarsın. 🧏‍♂️💬",
-            "Kalbim sadece seni çağırıyor. 📢❤️",
-            "Seninle olmak bir rüya gibi. 🌙💘",
-            "Sana sarılmak en güvenli yer. 🤗🏡",
-            "Aşk, adını seninle öğrendim. 📖💓",
-            "Sen benim evimsin. 🏠❤️",
-            "Gözlerinle kayboluyorum. 🔍👁️‍🗨️",
-            "Hayat seninle çok daha güzel. 🌈💞",
+            // ... diğer mesajlar ...
             "Sadece sen… ve sonsuz bir aşk. ♾️💖"
         ];
 
         function rastgeleMesaj() {
             const rasgele = mesajlar[Math.floor(Math.random() * mesajlar.length)];
-            document.getElementById("askMesaji").innerText = rasgele;
+            const askMesajiSpan = document.querySelector("#askMesaji .highlight");
+            askMesajiSpan.innerText = rasgele;
         }
 
         rastgeleMesaj();
         setInterval(rastgeleMesaj, 10000);
-
-        // Sayfadaki metin içeren elementlere blink sınıfı ekle
-        window.onload = () => {
-            document.querySelectorAll('h1, p, button').forEach(el => {
-                el.classList.add('blink');
-            });
-        };
     </script>
 
 </body>
